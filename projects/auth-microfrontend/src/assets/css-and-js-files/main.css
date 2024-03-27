@@ -1,0 +1,7 @@
+@import url('https://fonts.cdnfonts.com/css/red-hat-display');
+@import url('https://fonts.cdnfonts.com/css/red-hat-text');
+
+:host  {
+    font-family: 'Red Hat Text', sans-serif;
+  }
+  

@@ -1,0 +1,70 @@
+<app-header [logoURL]="'../../assets/MassTer.svg'" [loggedIn]="false"> </app-header>
+
+<div class="activate-account-background">
+  <div class="activate-account-content">
+    <div class="card-container">
+      <mat-card class="activate-account-card">
+        <mat-card-title class="reset-title">{{ translations.activate_account_title }}</mat-card-title>
+        <mat-card-content class="activate-account-card-content">
+          <form [formGroup]="form" class="activate-account-form">
+            <div class="info-container">
+              <div *ngIf="info" class="info-message">
+                <img src="../../assets/information-outline.svg" alt="information-outline SVG" />
+                <div class="info-message-text">
+                  {{ info }}
+                </div>
+              </div>
+            </div>
+            <div class="error-container">
+              <div *ngIf="error" class="error-message">
+                <img src="../../assets/alertCircle.svg" alt="alert-circle SVG" />
+                <div class="error-message-text">
+                  {{ error }}
+                </div>
+              </div>
+            </div>
+            <mat-form-field class="form-field">
+              <mat-label>{{ translations.activate_account_new_password_label }}</mat-label>
+              <input
+                [type]="hideNewPassword ? 'password' : 'text'"
+                matInput
+                autocomplete="off"
+                formControlName="newPassword"
+                (keydown)="onKeyDown()"
+              />
+              <mat-icon
+                *ngIf="this.form.get('newPassword').value"
+                matSuffix
+                (click)="hideNewPassword = !hideNewPassword"
+                >{{ hideNewPassword ? 'visibility_off' : 'visibility' }}</mat-icon
+              >
+            </mat-form-field>
+            <mat-form-field class="form-field">
+              <mat-label>{{ translations.activate_account_confirm_password_label }}</mat-label>
+              <input
+                [type]="hideConfirmPassword ? 'password' : 'text'"
+                matInput
+                autocomplete="off"
+                formControlName="confirmPassword"
+                (keydown)="onKeyDown()"
+              />
+              <mat-icon
+                *ngIf="this.form.get('confirmPassword').value"
+                matSuffix
+                (click)="hideConfirmPassword = !hideConfirmPassword"
+                >{{ hideConfirmPassword ? 'visibility_off' : 'visibility' }}</mat-icon
+              >
+            </mat-form-field>
+
+            <app-button
+              class="button"
+              type="button"
+              (click)="onActivateAccountPressed()"
+              label="{{ translations.activate_account_button }}"
+            ></app-button>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
