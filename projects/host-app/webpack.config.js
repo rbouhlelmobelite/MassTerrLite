@@ -15,7 +15,7 @@ module.exports = {
   },
   optimization: {
     runtimeChunk: false
-  },   
+  },
   resolve: {
     alias: {
       ...sharedMappings.getAliases(),
@@ -33,25 +33,31 @@ module.exports = {
         // filename: "remoteEntry.js",
         // exposes: {
         //     './Component': './projects/host-app/src/app/app.component.ts',
-        // },        
-        
-        // For hosts (please adjust)
-        // remotes: {
-        //     "projectsMicrofrontend": "http://localhost:4200/remoteEntry.js",
-        //     "authMicrofrontend": "http://localhost:4200/remoteEntry.js",
-        //     "adminMicrofrontend": "http://localhost:4200/remoteEntry.js",
-
+        // },
+        // name: 'shared_lib',
+        // library: { type: 'var', name: 'shared_lib' },
+        // filename: 'remoteEntry.js',
+        // exposes: {
+        //   './SharedModule': './path/to/shared-lib/public-api.ts', // adjust the path
         // },
 
+        // For hosts (please adjust)
+        remotes: {
+            // "projectsMicrofrontend": "http://localhost:4200/remoteEntry.js",
+            "authMicrofrontend": "authMicrofrontend@http://localhost:4201/remoteEntry.js",
+            // "adminMicrofrontend": "http://localhost:4200/remoteEntry.js",
+
+        },
+
         shared: share({
-          "@angular/core": { singleton: true, strictVersion: true, requiredVersion: 'auto' }, 
-          "@angular/common": { singleton: true, strictVersion: true, requiredVersion: 'auto' }, 
-          "@angular/common/http": { singleton: true, strictVersion: true, requiredVersion: 'auto' }, 
+          "@angular/core": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
+          "@angular/common": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
+          "@angular/common/http": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
           "@angular/router": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
 
           ...sharedMappings.getDescriptors()
         })
-        
+
     }),
     sharedMappings.getPlugin()
   ],

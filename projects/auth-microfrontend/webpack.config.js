@@ -31,11 +31,11 @@ module.exports = {
           // 'shared-library': 'http://localhost:4200/remoteEntry.js',
         },
         // For remotes (please adjust)
-        // name: "authMicrofrontend",
-        // filename: "remoteEntry.js",
-        // exposes: {
-        //     './Component': './projects/auth-microfrontend/src/app/app.component.ts',
-        // },
+        name: "authMicrofrontend",
+        filename: "remoteEntry.js",
+        exposes: {
+            './authMicrofrontend': './projects/auth-microfrontend/src/app/app.module.ts',
+        },
 
         // For hosts (please adjust)
         // remotes: {
@@ -46,7 +46,7 @@ module.exports = {
         // },
 
         shared: share({
-          ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
+          // ...shareAll({ singleton: true, strictVersion: true, requiredVersion: 'auto' }),
           "@angular/core": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
           "@angular/common": { singleton: true, strictVersion: true, requiredVersion: 'auto' },
           "@angular/common/http": { singleton: true, strictVersion: true, requiredVersion: 'auto' },

@@ -1,0 +1,12 @@
+<button
+  matStepperNext
+  mat-raised-button
+  mat-button
+  class="primary"
+  [ngClass]="disable ? 'disable' : 'primary'"
+>
+  <span class="button-label">
+    {{ label }}
+    <img *ngIf="srcImage !== ''" [src]="srcImage" alt="right-vector SVG" />
+  </span>
+</button>

@@ -1,0 +1,65 @@
+<app-header [logoURL]="'../../assets/MassTer.svg'" [loggedIn]="false">
+</app-header>
+
+<div class="login-background">
+  <div class="login-content">
+    <div class="card-container">
+      <mat-card class="login-card">
+        <mat-card-title class="sign-in">{{
+          translations.login_page_sign_in
+          }}</mat-card-title>
+        <mat-card-content class="login-card-content">
+          <form [formGroup]="form" class="login-form">
+            <div class="error-container">
+              <div *ngIf="error" class="error-message">
+                <img src="../../assets/alertCircle.svg" alt="alert-circle SVG" />
+                <div class="error-message-text">
+                  {{ error }}
+                </div>
+              </div>
+            </div>
+            <p>
+              <mat-form-field class="form-field" [ngClass]="{
+                  'red-line':
+                    apiError ||
+                    (form.get('username')?.value === '' &&
+                      !usernameAutofilled &&
+                      form.get('username').touched)
+                }">
+                <mat-label>{{
+                  translations.login_page_username_label
+                  }}</mat-label>
+                <input required #username type="text" matInput formControlName="username" (keydown)="onKeyDown()" />
+              </mat-form-field>
+            </p>
+            <p>
+              <mat-form-field class="form-field" [ngClass]="{
+                  'red-line':
+                    apiError ||
+                    (form.get('password')?.value === '' &&
+                      !passwordAutofilled &&
+                      form.get('password').touched)
+                }">
+                <mat-label>{{
+                  translations.login_page_password_label
+                  }}</mat-label>
+                <input #password [type]="hide ? 'password' : 'text'" matInput formControlName="password" required
+                  (keydown)="onKeyDown()" />
+                <mat-icon *ngIf="form.get('password').value || passwordAutofilled" matSuffix (click)="hide = !hide">
+                  {{ hide ? "visibility_off" : "visibility" }}
+                </mat-icon>
+              </mat-form-field>
+            </p>
+            <div class="forgot-password">
+              <a [routerLink]="['/forgot-password']">
+                {{ translations.login_page_forgot_password }}
+              </a>
+            </div>
+            <app-button class="button" type="button" (click)="onLoginPressed($event)"
+              label="{{ translations.login_page_login_button }}"></app-button>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
