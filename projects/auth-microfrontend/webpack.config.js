@@ -27,7 +27,9 @@ module.exports = {
   plugins: [
     new ModuleFederationPlugin({
         library: { type: "module" },
-
+        remotes: {
+          // 'shared-library': 'http://localhost:4200/remoteEntry.js',
+        },
         // For remotes (please adjust)
         name: "authMicrofrontend",
         filename: "remoteEntry.js",

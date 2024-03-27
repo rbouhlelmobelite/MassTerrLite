@@ -6,6 +6,11 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
   },
+  "paths": {
+    "shared-library": [
+      "./projects/shared-library/src/public-api.ts"
+    ]
+  },
   "files": [
     "src/main.ts"
   ],
